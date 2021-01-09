@@ -1,0 +1,30 @@
+MODEL:
+  LOSS_TYPE: 'lovasz'
+  IF_LABELSMOOTH: 'on'
+  NAME: 'se_resnext50_32x4d'
+  DEVICE_ID: ('0')
+
+
+INPUT:
+  NEW_SIZE: 512
+
+DATASETS:
+  DATA_PATH: 'hubmap-kidney-segmentation'
+  WINDOW: 1024
+  MIN_OVERLAP: 300
+
+SOLVER:
+  OPTIMIZER_NAME: 'Ranger'
+  MAX_EPOCHS: 20
+  BASE_LR: 0.0005
+  BATCH_SIZE: 4
+  STEPS: [10, 20]
+  GAMMA: 0.1
+  WARMUP_FACTOR: 0.01
+  WARMUP_EPOCHS: 10
+  WARMUP_METHOD: 'linear'
+
+
+OUTPUT_DIR: "weights/"
+
+
