@@ -1,2 +1,4 @@
 /hubmap-kidney-segmentation/
 /weights/
+/venv/
+.idea/
