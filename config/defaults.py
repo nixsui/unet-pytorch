@@ -55,30 +55,12 @@ _C.SOLVER.BATCH_SIZE = 4
 _C.SOLVER.MAX_EPOCHS = 100
 # Base learning rate
 _C.SOLVER.BASE_LR = 3e-4
-# Whether using larger learning rate for fc layer
-_C.SOLVER.LARGE_FC_LR = False
-# Factor of learning bias
-_C.SOLVER.BIAS_LR_FACTOR = 1
-# Momentum
-_C.SOLVER.MOMENTUM = 0.9
-# Margin of triplet loss
-_C.SOLVER.MARGIN = 0.3
-# Margin of cluster ;pss
-_C.SOLVER.CLUSTER_MARGIN = 0.3
-# Learning rate of SGD to learn the centers of center loss
-# Settings of range loss
-
-
 # Settings of weight decay
 _C.SOLVER.WEIGHT_DECAY = 0.0005
-
-
 # decay rate of learning rate
 _C.SOLVER.GAMMA = 0.1
 # decay step of learning rate
 _C.SOLVER.STEPS = (40, 70)
-
-
 # warm up factor
 _C.SOLVER.WARMUP_FACTOR = 0.01
 #  warm up epochs
