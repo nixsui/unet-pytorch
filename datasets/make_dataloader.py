@@ -20,7 +20,7 @@ def make_dataloader(cfg, tiff_ids, train_idx, val_idx):
             A.ElasticTransform(alpha=120, sigma=120 * 0.05, alpha_affine=120 * 0.03),
             A.GridDistortion(),
             A.OpticalDistortion(distort_limit=2, shift_limit=0.5),
-        ], p=0.0),
+        ], p=0.3),
         A.ShiftScaleRotate(),
 
     ])
@@ -32,9 +32,9 @@ def make_dataloader(cfg, tiff_ids, train_idx, val_idx):
 
     if tiff_ids[val_idx][0] != "e79de561c":
         return None, None
-    train_ds = HubDataset(cfg.DATASETS.DATA_PATH, tiff_ids[train_idx], window=cfg.DATASETS.WINDOW, new_size=cfg.INPUT.NEW_SIZE, overlap=cfg.DATASETS.MIN_OVERLAP,
+    train_ds = HubDataset(cfg, cfg.DATASETS.DATA_PATH, tiff_ids[train_idx], window=cfg.DATASETS.WINDOW, new_size=cfg.INPUT.NEW_SIZE, overlap=cfg.DATASETS.MIN_OVERLAP,
                           threshold=100, transform=trfm)
-    valid_ds = HubDataset(cfg.DATASETS.DATA_PATH, tiff_ids[val_idx], window=cfg.DATASETS.WINDOW, new_size=cfg.INPUT.NEW_SIZE, overlap=cfg.DATASETS.MIN_OVERLAP,
+    valid_ds = HubDataset(cfg, cfg.DATASETS.DATA_PATH, tiff_ids[val_idx], window=cfg.DATASETS.WINDOW, new_size=cfg.INPUT.NEW_SIZE, overlap=cfg.DATASETS.MIN_OVERLAP,
                           threshold=100, transform=val_trfm, isvalid=True)
 
     print(len(train_ds), len(valid_ds))

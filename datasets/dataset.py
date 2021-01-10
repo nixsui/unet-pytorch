@@ -89,7 +89,7 @@ def make_grid(shape, window=256, min_overlap=32):
 
 class HubDataset(D.Dataset):
 
-    def __init__(self, path, tiff_ids, transform,new_size,
+    def __init__(self, cfg, path, tiff_ids, transform,new_size,
                  window=256, overlap=32, threshold=100, isvalid=False):
         self.path = pathlib.Path(path)
         self.tiff_ids = tiff_ids
@@ -108,10 +108,10 @@ class HubDataset(D.Dataset):
         self.len = len(self.x)
         self.as_tensor = T.Compose([
             T.ToTensor(),
-            # T.Normalize([0.485, 0.456, 0.406],
-            #             [0.229, 0.224, 0.225])
-            T.Normalize([0.625, 0.448, 0.688],
-                        [0.131, 0.177, 0.101]),
+            T.Normalize(cfg.INPUT.PIXEL_MEAN,
+                        cfg.INPUT.PIXEL_STD)
+            # T.Normalize([0.625, 0.448, 0.688],
+            #             [0.131, 0.177, 0.101]),
         ])
 
     def build_slices(self):
